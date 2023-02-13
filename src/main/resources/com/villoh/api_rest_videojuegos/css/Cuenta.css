@@ -1,0 +1,16 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 12 feb 2023, 20:30:51
+    Author     : Mikel Villota
+*/
+
+.rootPane{
+    
+}
+
+.rootPane .label-email{
+    -fx-font-size: 48pt;
+}

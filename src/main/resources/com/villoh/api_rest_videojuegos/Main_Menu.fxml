@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
+<?import io.github.palexdev.materialfx.font.MFXFontIcon?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="681.0" prefWidth="1365.0" styleClass="rootPane" stylesheets="@css/Main_Menu.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.villoh.api_rest_videojuegos.controladores.Main_Menu">
+   <children>
+      <VBox alignment="CENTER" prefHeight="681.0" prefWidth="212.0" styleClass="sidebar" />
+      <HBox fx:id="windowHeader" alignment="CENTER_RIGHT" prefHeight="36.0" prefWidth="1365.0" spacing="10.0">
+         <padding>
+            <Insets right="10.0" />
+         </padding>
+         <children>
+            <MFXFontIcon fx:id="alwaysOnTopIcon" description="mfx-circle" onMouseClicked="#minStage" size="15.0" styleClass="always-on-top-icon" />
+            <MFXFontIcon fx:id="closeIcon" description="mfx-circle" onMouseClicked="#closeApp" size="15.0" styleClass="close-icon" />
+         </children>
+      </HBox>
+      <VBox prefHeight="681.0" prefWidth="257.0" styleClass="sidebar">
+         <padding>
+            <Insets bottom="10.0" left="10.0" top="60.0" />
+         </padding>
+         <children>
+            <Label contentDisplay="TOP" graphicTextGap="15.0" styleClass="header" text="RAWG API">
+               <graphic>
+                  <ImageView fitHeight="56.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@imagenes/logo_rawg-removebg-preview.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <VBox.margin>
+                  <Insets left="60.0" />
+               </VBox.margin>
+            </Label>
+            <Label styleClass="menu-label" text="Menú">
+               <VBox.margin>
+                  <Insets left="5.0" top="40.0" />
+               </VBox.margin>
+            </Label>
+            <MFXScrollPane fx:id="scrollPane" fitToWidth="true" hbarPolicy="NEVER" prefHeight="392.0" prefWidth="242.0" styleClass="mfx-scroll-pane" VBox.vgrow="ALWAYS">
+               <VBox.margin>
+                  <Insets bottom="70.0" left="5.0" top="15.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets right="10.0" />
+               </padding>
+               <content>
+                  <VBox fx:id="navBar" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="5.0" styleClass="navbar">
+                     <children>
+                        <MFXButton fx:id="buttonJuegos" alignment="CENTER" contentDisplay="TOP" onAction="#openJuegosScene" prefHeight="44.0" prefWidth="232.0" rippleAnimateShadow="true" rippleBackgroundOpacity="1.0" rippleColor="#7a0ed9" styleClass="button-scroll-pane" text="Juegos">
+                           <graphic>
+                              <ImageView fx:id="imageJuegos" fitHeight="40.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@imagenes/joystick.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </MFXButton>
+                     </children>
+                  </VBox>
+               </content>
+            </MFXScrollPane>
+            <MFXButton fx:id="buttonCuenta" alignment="CENTER" contentDisplay="TOP" onAction="#openCuentaScene" prefHeight="44.0" prefWidth="232.0" rippleAnimateShadow="true" rippleBackgroundOpacity="1.0" rippleColor="#7a0ed9" styleClass="button-scroll-pane" text="Cuenta">
+               <graphic>
+                  <ImageView fx:id="imageCuenta" fitHeight="40.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@imagenes/usuario.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </MFXButton>
+         </children>
+      </VBox>
+      <AnchorPane fx:id="panelPrincipal" layoutX="263.0" layoutY="36.0" prefHeight="647.0" prefWidth="1101.0" />
+   </children>
+</AnchorPane>

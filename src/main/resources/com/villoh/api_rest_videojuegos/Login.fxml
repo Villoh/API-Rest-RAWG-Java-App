@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXPasswordField?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import io.github.palexdev.materialfx.font.MFXFontIcon?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="608.0" prefWidth="517.0" styleClass="rootPane" stylesheets="@css/Estilo.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.villoh.api_rest_videojuegos.controladores.Login">
+   <children>
+      <VBox alignment="CENTER" layoutX="4.0" layoutY="31.0" prefHeight="561.0" prefWidth="511.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="30.0">
+         <children>
+            <ImageView fitWidth="450.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@imagenes/text_logo_rawg.png" />
+               </image>
+            </ImageView>
+            <MFXTextField fx:id="tfCorreo" floatMode="BORDER" floatingText="Introduce el correo" prefHeight="50.0" prefWidth="450.0" style="-mfx-main: -mfx-purple;">
+               <VBox.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </VBox.margin>
+            </MFXTextField>
+            <MFXPasswordField fx:id="pfContrasenia" floatMode="BORDER" floatingText="Introduce la contraseña" prefHeight="50.0" prefWidth="450.0">
+               <VBox.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </VBox.margin>
+            </MFXPasswordField>
+            <MFXTextField fx:id="tfAPIKey" floatMode="BORDER" floatingText="Introduce la API Key" prefHeight="50.0" prefWidth="450.0">
+               <VBox.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </VBox.margin>
+            </MFXTextField>
+            <HBox alignment="CENTER" prefHeight="39.0" prefWidth="600.0">
+               <children>
+                  <MFXButton buttonType="RAISED" onAction="#login" prefHeight="30.0" prefWidth="220.0" rippleAnimateShadow="true" rippleBackgroundOpacity="1.0" rippleColor="#7a0ed9" styleClass="left-button" text="Login">
+                     <HBox.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </HBox.margin>
+                  </MFXButton>
+                  <MFXButton buttonType="RAISED" onAction="#loginInvitado" prefHeight="30.0" prefWidth="220.0" rippleAnimateShadow="true" rippleBackgroundOpacity="1.0" rippleColor="#7a0ed9" styleClass="right-button" text="Invitado">
+                     <HBox.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </HBox.margin>
+                  </MFXButton>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </VBox.margin>
+            </HBox>
+            <MFXButton buttonType="RAISED" onAction="#registro" prefHeight="30.0" prefWidth="450.0" rippleAnimateShadow="true" rippleBackgroundOpacity="1.0" rippleColor="#7a0ed9" styleClass="middle-button" text="Registro" />
+         </children>
+      </VBox>
+      <HBox fx:id="tittleBar" alignment="TOP_RIGHT" prefHeight="29.0" prefWidth="517.0">
+         <children>
+            <MFXFontIcon fx:id="alwaysOnTopIcon" description="mfx-circle" onMouseClicked="#minStage" size="15.0" styleClass="always-on-top-icon">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </MFXFontIcon>
+            <MFXFontIcon fx:id="closeIcon" description="mfx-circle" onMouseClicked="#closeApp" size="15.0" styleClass="close-icon">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </MFXFontIcon>
+         </children>
+         <padding>
+            <Insets top="10.0" />
+         </padding>
+      </HBox>
+   </children>
+</AnchorPane>
