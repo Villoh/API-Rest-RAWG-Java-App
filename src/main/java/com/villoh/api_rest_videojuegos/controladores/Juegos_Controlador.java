@@ -29,7 +29,6 @@ public class Juegos_Controlador implements Initializable {
     @FXML
     private GridPane gridPaneJuegos;
     
-    public static GridPane gridPaneJuegosStatic;
     
     @FXML
     private AnchorPane rootPane;
@@ -47,8 +46,9 @@ public class Juegos_Controlador implements Initializable {
     private Thread hiloJuego;
     
     @FXML
+    @Override
     public void initialize(URL url, ResourceBundle rb) {
-        json =  new Json(this);
+        json =  new Json();
         juegos = new ArrayList<>(json.cargaVideojuegosPopulares(30));
         cargaJuegos(juegos);
     }
@@ -62,18 +62,8 @@ public class Juegos_Controlador implements Initializable {
         if (!textFieldJuegos.getText().isEmpty()) {
             cargaJuego(creaJuego());
         }else{
-            gridPaneJuegosStatic.getChildren().clear();
-            juegos = new ArrayList<>(json.cargaVideojuegosPopulares(30));
             cargaJuegos(juegos);
         }
-    }
-
-    public MFXTextField getTextFieldJuegos() {
-        return textFieldJuegos;
-    }
-
-    public void setTextFieldJuegos(MFXTextField textFieldJuegos) {
-        this.textFieldJuegos = textFieldJuegos;
     }
     
     /**
@@ -81,12 +71,13 @@ public class Juegos_Controlador implements Initializable {
      * @param juegos 
      */
     private void cargaJuegos(List<Juego> juegos){
-        juegos = new ArrayList<>(juegos);
         column = 0;
         row = 1;
-        gridPaneJuegosStatic = gridPaneJuegos;
+        if(gridPaneJuegos.getChildren() != null){
+            gridPaneJuegos.getChildren().clear();
+        }
         for (Juego jueg : juegos) {
-            hiloJuego = new Juegos_Hilo(jueg, 2);
+            hiloJuego = new Juegos_Hilo(jueg, 2, gridPaneJuegos);
             hiloJuego.start();
         }
     }
@@ -96,10 +87,7 @@ public class Juegos_Controlador implements Initializable {
      * @return juego
      */
     private Juego creaJuego() {
-        juego = json.procesarConsulta();
-        juegos.clear();
-        juegos.add(juego);
-        cargaJuego(juego);
+        juego = json.procesarConsulta(this.textFieldJuegos.getText());
         return juego;
     }
     
@@ -110,8 +98,8 @@ public class Juegos_Controlador implements Initializable {
     private void cargaJuego(Juego juego){
         column = 0;
         row = 1;
-        gridPaneJuegosStatic.getChildren().clear();
-        hiloJuego = new Juegos_Hilo(juego, 1);
+        gridPaneJuegos.getChildren().clear();
+        hiloJuego = new Juegos_Hilo(juego, 1, gridPaneJuegos);
         hiloJuego.start();
     } 
 }

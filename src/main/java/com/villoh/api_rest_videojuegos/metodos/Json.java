@@ -6,7 +6,6 @@ package com.villoh.api_rest_videojuegos.metodos;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.villoh.api_rest_videojuegos.controladores.Juegos_Controlador;
 import com.villoh.api_rest_videojuegos.pojos.Cuenta;
 import com.villoh.api_rest_videojuegos.pojos.Juego;
 import java.io.IOException;
@@ -23,23 +22,23 @@ import java.util.List;
 
 public class Json {
     
-
-    private String inputJuego;
     private ObjectMapper oMapper;
     private JsonNode datos;
-    private Juegos_Controlador juegosControlador;
     private Juego juego;
     private List<Juego> juegos;
     
     /**
      * Este método procesa una consulta a la API REST de Rawg.IO y le pide un archivo JSON con el juego escrito por teclado.
+     * @param inputJuego nombre del juego
      * @return 
      */
-    public Juego procesarConsulta() {
+    public Juego procesarConsulta(String inputJuego) {
+        System.out.println(inputJuego);
         juego = new Juego();
         oMapper = new ObjectMapper();
-        this.inputJuego = this.juegosControlador.getTextFieldJuegos().getText().toLowerCase(); //la api  es sensible a mayusculas, si le pasamos un nombre con mayusculas, da error y no devuelve el JSON
-        if (!this.inputJuego.isBlank()) {
+        inputJuego = inputJuego.toLowerCase(); //la api  es sensible a mayusculas, si le pasamos un nombre con mayusculas, da error y no devuelve el JSON
+        System.out.println(inputJuego);
+        if (!inputJuego.isBlank()) {
             try {
                 this.datos = oMapper.readTree(new URL("https://api.rawg.io/api/games?search=".concat(inputJuego).concat("&page_size=1&key=").concat(Cuenta.getAPI_Key()))).path("results"); //hacemos el request a la api con el nombre del juego pasado por teclado
             } catch (MalformedURLException ex) {
@@ -101,11 +100,9 @@ public class Json {
     }
     
     /**
-     * Inicializa el controlador para poder acceder a el
-     * @param juegos_Controlador controlador
+     * Inicializa el oMapper para poder utilizarlo
      */
-    public Json(Juegos_Controlador juegos_Controlador){
-        juegosControlador = juegos_Controlador;
+    public Json(){
         oMapper = new ObjectMapper();
     }
 }

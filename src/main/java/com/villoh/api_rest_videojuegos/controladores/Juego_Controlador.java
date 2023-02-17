@@ -5,17 +5,13 @@
 package com.villoh.api_rest_videojuegos.controladores;
 
 import com.villoh.api_rest_videojuegos.pojos.Juego;
-import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javax.imageio.ImageIO;
 
 /**
  * FXML Controller class
@@ -66,15 +62,7 @@ public class Juego_Controlador implements Initializable {
      * @return Image javafx
      */
     public Image getImage (String url){
-        Image urlImage = null;
-        try {
-            URL urlInput = new URL(url);
-            urlImage = SwingFXUtils.toFXImage(ImageIO.read(urlInput), null);
-        } catch (MalformedURLException ex) {
-            System.err.println(ex);
-        } catch (IOException ex) {
-            System.err.println(ex);
-        }
+        Image urlImage = new Image(url);
         return urlImage;
     }  
 }

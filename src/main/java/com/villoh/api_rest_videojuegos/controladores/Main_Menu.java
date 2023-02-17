@@ -123,7 +123,6 @@ public class Main_Menu implements Initializable{
      * Carga un AnchorPane con los datos de la cuenta en otro AnchorPane
      */
     public void cargaCuentaFXML(){
-
         FXMLLoader loader = new FXMLLoader(App.class.getResource("Cuenta.fxml"));
         try {
             AnchorPane cuenta = loader.load();

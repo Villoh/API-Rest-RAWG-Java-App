@@ -7,13 +7,13 @@ package com.villoh.api_rest_videojuegos.hilos;
 import com.villoh.api_rest_videojuegos.App;
 import com.villoh.api_rest_videojuegos.controladores.Juego_Controlador;
 import static com.villoh.api_rest_videojuegos.controladores.Juegos_Controlador.column;
-import static com.villoh.api_rest_videojuegos.controladores.Juegos_Controlador.gridPaneJuegosStatic;
 import static com.villoh.api_rest_videojuegos.controladores.Juegos_Controlador.row;
 import com.villoh.api_rest_videojuegos.pojos.Juego;
 import java.io.IOException;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 
 /**
  *
@@ -24,10 +24,15 @@ public class Juegos_Hilo extends Thread {
     
     private Juego juego;
     private int limite; //Limite de columnas (juegos en una fila)
+    private GridPane gridPaneJuegos;
+    private Juego_Controlador juegoControlador;
+    private AnchorPane cardBox;
+    private FXMLLoader fxmlLoader;
     
-    public Juegos_Hilo(Juego juego, int limite){
+    public Juegos_Hilo(Juego juego, int limite, GridPane gridPaneJuegos){
         this.juego = juego;
         this.limite = limite;
+        this.gridPaneJuegos = gridPaneJuegos;
     }
     
     @Override
@@ -40,24 +45,24 @@ public class Juegos_Hilo extends Thread {
      */
     public void inicializaJuego(){
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(App.class.getResource("Juego.fxml"));
-            AnchorPane cardBox = fxmlLoader.load();
-            Juego_Controlador juegoControlador = fxmlLoader.getController();
+            cardBox = fxmlLoader.load();
+            juegoControlador = fxmlLoader.getController();
             juegoControlador.setData(juego);
             
             
             Platform.runLater(() -> {
                 if(limite == 1){
                     if(column == 0){
-                        gridPaneJuegosStatic.add(cardBox, column++, row);
+                        gridPaneJuegos.add(cardBox, column++, row);
                     }
                 } else {
                     if (column == limite) {
                         column = 0;
-                        gridPaneJuegosStatic.add(cardBox, column, row++);
+                        gridPaneJuegos.add(cardBox, column, row++);
                     } else {
-                        gridPaneJuegosStatic.add(cardBox, column++, row);
+                        gridPaneJuegos.add(cardBox, column++, row);
                     }
                 }
             });

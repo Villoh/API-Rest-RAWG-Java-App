@@ -44,11 +44,6 @@ public class Login implements Initializable{
         makeStageDragable(tittleBar);
     }
     
-    @FXML
-    private void switchToSecondary() throws IOException {
-        App.setRoot("secondary");
-    }
-    
     /**
      * Cierra la aplicacion.
      * @param event 
